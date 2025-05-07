@@ -4,13 +4,12 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentData {
+@ToString
+public class NewsComment {
     private String uuid;
     private String user;
     private String comment;
-    private String type;
     private int likeCount;
 }

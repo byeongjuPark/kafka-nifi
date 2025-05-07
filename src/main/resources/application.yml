@@ -8,4 +8,15 @@ spring:
       bootstrap-servers: localhost:29092
       group-id: spring-consumer
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.example.kafka.dto
+        #Spring Kafka에서 JsonDeserializer는 역직렬화 대상 타입을 명확히 지정하지 않으면
+        #Object 또는 LinkedHashMap으로 처리하려고 함
+        #CommentData로 직접 바인딩하려 할 때 오류가 발생합니다.
+        spring.json.value.default.type: com.example.kafka.dto.CommentData
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
